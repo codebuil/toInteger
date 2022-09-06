@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<title>
+float emulator
+		</title>
+		
+	</head>
+	<body bgColor='green'>
+		<div id="txt" bgColor="green" >
+			
+		</div>
+		<script>
+
+	fetch("floatEmulator.wasm") 
+   .then(bytes => bytes.arrayBuffer()) 
+   .then(mod => WebAssembly.compile(mod)) 
+   .then(module => { 
+      let instance = new WebAssembly.Instance(module);
+      	
+var txts=document.getElementById("txt");
+txts.innerHTML="-----<br>";
+	getInt=5;
+	setInt=4;
+	divs=3;
+	mult=2;
+	subs=1;
+	adds=0;
+	x=0;
+	xx=16;
+	xxx=0;
+	readss=0;
+
+x=0;
+
+
+	for(x=0;x<xx;x++){
+		xxx=instance.exports.floatEmulator(x,0,setInt);
+		xxx=instance.exports.floatEmulator(xxx,10,divs);
+		txts.innerHTML+=xxx.toString()+"<br>";
+	}
+
+	
+});
+
+
+
+	</script>
+	</body>
+</html>
